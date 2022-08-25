@@ -80,7 +80,7 @@ function drawDoor(ctx) {
 }
 
 function swapPage() {
-	window.location.href = '../2/Oppgave2.html';
+	window.location.href = '../2/Index.html';
 	return false;
 }
 

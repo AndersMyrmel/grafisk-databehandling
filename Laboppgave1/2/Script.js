@@ -40,7 +40,7 @@ function drawCircle(ctx) {
 }
 
 function swapPage() {
-	window.location.href = '../1/Oppgave1.html';
+	window.location.href = '../1/Index.html';
 	return false;
 }
 
