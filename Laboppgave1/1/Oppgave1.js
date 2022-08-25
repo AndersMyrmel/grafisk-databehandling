@@ -79,4 +79,9 @@ function drawDoor(ctx) {
 	ctx.fill();
 }
 
+function swapPage() {
+	window.location.href = '../2/Oppgave2.html';
+	return false;
+}
+
 draw();
