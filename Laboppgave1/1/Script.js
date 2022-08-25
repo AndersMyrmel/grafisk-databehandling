@@ -79,9 +79,10 @@ function drawDoor(ctx) {
 	ctx.fill();
 }
 
+// change page on button click
 function swapPage() {
 	window.location.href = '../2/Index.html';
-	return false;
+	return false; // prevent false navigation
 }
 
 draw();
