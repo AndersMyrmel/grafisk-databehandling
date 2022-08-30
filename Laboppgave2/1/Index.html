@@ -19,22 +19,41 @@
 				margin-top: 30px;
 			"
 		></canvas>
+		<div style="text-align: center; margin-top: 5px">
+			<form style="display: inline">
+				<label>Antall punkter</label>
+				<select id="points">
+					<option value="0">0</option>
+					<option value="16">16</option>
+					<option value="32">32</option>
+					<option value="64">64</option>
+					<option value="126">126</option>
+					<option value="256">256</option>
+					<option value="512">512</option>
+				</select>
+			</form>
+			<form style="display: inline">
+				<label>x til kx</label>
+				<select id="kx">
+					<option value="0">0</option>
+					<option value="1">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="max">max</option>
+				</select>
+			</form>
+		</div>
 		<input
-			type="number"
-			id="points"
-			min="1"
-			max="100"
+			type="button"
+			value="Oppgave 3"
 			style="
 				display: block;
 				margin-left: auto;
 				margin-right: auto;
-				margin-top: 10px;
+				margin-top: 20px;
 			"
-		/>
-		<input
-			type="button"
-			value="Oppgave 3"
-			style="display: block; margin-left: auto; margin-right: auto"
 			onclick="swapPage(3);"
 		/>
 	</body>
