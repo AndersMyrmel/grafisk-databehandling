@@ -1,7 +1,7 @@
-var c = document.getElementById('myCanvas');
-var ctx = c.getContext('2d');
-var width = c.width;
-var height = c.height;
+const c = document.getElementById('myCanvas');
+const ctx = c.getContext('2d');
+const width = c.width;
+const height = c.height;
 
 let circle = {
 	x: 300,
@@ -80,8 +80,8 @@ function drawLine(ctx, x, y, yChange, xChange) {
 
 // register mouseclick on circle
 c.addEventListener('mousedown', function (event) {
-	var currx = event.clientX - c.offsetLeft;
-	var curry = event.clientY - c.offsetTop;
+	let currx = event.clientX - c.offsetLeft;
+	let curry = event.clientY - c.offsetTop;
 	if (ctx.isPointInPath(currx, curry)) {
 		document.body.addEventListener('mousemove', onMouseMove);
 		document.body.addEventListener('mouseup', onmouseUp);
@@ -90,8 +90,8 @@ c.addEventListener('mousedown', function (event) {
 
 // change cursor on circle hover
 c.addEventListener('mousemove', function (event) {
-	var currx = event.clientX - c.offsetLeft;
-	var curry = event.clientY - c.offsetTop;
+	let currx = event.clientX - c.offsetLeft;
+	let curry = event.clientY - c.offsetTop;
 	if (ctx.isPointInPath(currx, curry)) {
 		c.style.cursor = 'pointer';
 	} else {

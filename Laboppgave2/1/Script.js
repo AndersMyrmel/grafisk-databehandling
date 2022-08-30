@@ -20,7 +20,6 @@ function calculateCircle(v) {
 		draw(x, y);
 	}
 	draw(startx, starty);
-	ctx.closePath();
 }
 
 function draw(x, y) {
@@ -35,3 +34,9 @@ source.addEventListener('input', function (event) {
 	let result = event.target.value;
 	calculateCircle(result);
 });
+
+// change page on button click
+function swapPage(x) {
+	window.location.href = '../' + x + '/Index.html';
+	return false; // prevent false navigation
+}
