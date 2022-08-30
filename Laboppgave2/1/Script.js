@@ -5,22 +5,22 @@ const ctx = c.getContext('2d');
 let centerX = c.width / 2; // x center av sirkelen
 let centerY = c.height / 2; // y center av sirkelen
 let size = 550; // størrelse på sirkel
-let a = size / 2; // radius
-let b = size / 2; // radius
+let r = size / 2; // radius
 
 function calculateCircle(v) {
-	const startx = a * Math.cos(0 * (Math.PI / (v / 2))) + centerX;
-	const starty = b * Math.sin(0 * (Math.PI / (v / 2))) + centerY;
+	const startx = r * Math.cos(0 * (Math.PI / (v / 2))) + centerX;
+	const starty = r * Math.sin(0 * (Math.PI / (v / 2))) + centerY;
 	ctx.beginPath();
 	ctx.moveTo(startx, starty);
 
 	for (let i = 0; i < v; i++) {
 		let angle = i * (Math.PI / (v / 2));
-		let x = a * Math.cos(angle) + centerX;
-		let y = b * Math.sin(angle) + centerY;
+		let x = r * Math.cos(angle) + centerX;
+		let y = r * Math.sin(angle) + centerY;
 		draw(x, y);
 	}
 	draw(startx, starty);
+	ctx.closePath();
 }
 
 function draw(x, y) {
