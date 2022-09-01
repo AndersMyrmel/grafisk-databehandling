@@ -1,7 +1,7 @@
 const c = document.getElementById('myCanvas');
+const ctx = c.getContext('2d');
 const pointsSource = document.getElementById('points');
 const kxSource = document.getElementById('kx');
-const ctx = c.getContext('2d');
 
 let centerX = c.width / 2; // x center av sirkelen
 let centerY = c.height / 2; // y center av sirkelen
