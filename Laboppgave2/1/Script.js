@@ -3,12 +3,12 @@ const ctx = c.getContext('2d');
 const pointsSource = document.getElementById('points');
 const kxSource = document.getElementById('kx');
 
-let centerX = c.width / 2; // x center av sirkelen
-let centerY = c.height / 2; // y center av sirkelen
-let size = 550; // størrelse på sirkel
-let r = size / 2; // radius
-let points = []; // Array of all points on circle
+let centerX = c.width / 2; // x center of circle
+let centerY = c.height / 2; // y center of circle
+let size = 550; // circle size
+let r = size / 2; // radius of circle
 let result = 0; // number of points in circle
+let points = []; // Array of all points on circle
 
 // calculate circle and draw it to canvas
 function calculateCircle(v) {
@@ -42,7 +42,7 @@ function drawArt(kx) {
 	}
 }
 
-// draw lines in circle
+// draw lines between circle points
 function drawCircle(x, y) {
 	ctx.strokeStyle = 'black';
 	ctx.lineWidth = 3;
@@ -50,7 +50,7 @@ function drawCircle(x, y) {
 	ctx.stroke();
 }
 
-// draw lines in art
+// draw lines for art
 function drawLine(array, from, to) {
 	ctx.beginPath();
 	ctx.moveTo(array[from].x, array[from].y);
@@ -60,18 +60,18 @@ function drawLine(array, from, to) {
 
 // number of points input
 pointsSource.addEventListener('input', function (event) {
-	ctx.clearRect(0, 0, 600, 600); // clear previous canvas at start of every update
+	ctx.clearRect(0, 0, 600, 600); // clear previous canvas at input change
 	points = []; // empty circle points array
 	result = event.target.value; // number of points
 	calculateCircle(result); // calculate and draw new circle
 });
 
-// x til kx input
+// kx input
 kxSource.addEventListener('input', function (event) {
-	ctx.clearRect(0, 0, 600, 600); // clear previous canvas at start of every update
+	ctx.clearRect(0, 0, 600, 600); // clear previous canvas at input change
 	calculateCircle(result); // redraw circle
 	let res = event.target.value; // kx
-	drawArt(res); // draw art with kx given input
+	drawArt(res); // draw art with kx input
 });
 
 // change page on button click
