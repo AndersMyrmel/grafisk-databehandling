@@ -1,5 +1,6 @@
 const c = document.getElementById('myCanvas');
-const source = document.getElementById('points');
+const pointsSource = document.getElementById('points');
+const kxSource = document.getElementById('kx');
 const ctx = c.getContext('2d');
 
 let centerX = c.width / 2; // x center av sirkelen
@@ -7,7 +8,9 @@ let centerY = c.height / 2; // y center av sirkelen
 let size = 550; // størrelse på sirkel
 let r = size / 2; // radius
 let points = []; // Array of all points on circle
+let result = 0; // number of points in circle
 
+// calculate circle and draw it to canvas
 function calculateCircle(v) {
 	const startx = r * Math.cos(0 * (Math.PI / (v / 2))) + centerX;
 	const starty = r * Math.sin(0 * (Math.PI / (v / 2))) + centerY;
@@ -24,6 +27,7 @@ function calculateCircle(v) {
 	drawCircle(startx, starty);
 }
 
+// draw art to canvas
 function drawArt(kx) {
 	ctx.strokeStyle = 'black';
 	ctx.lineWidth = 1;
@@ -38,26 +42,36 @@ function drawArt(kx) {
 	}
 }
 
+// draw lines in circle
+function drawCircle(x, y) {
+	ctx.strokeStyle = 'black';
+	ctx.lineWidth = 3;
+	ctx.lineTo(x, y);
+	ctx.stroke();
+}
+
+// draw lines in art
 function drawLine(array, from, to) {
 	ctx.beginPath();
 	ctx.moveTo(array[from].x, array[from].y);
 	ctx.lineTo(array[to].x, array[to].y);
 	ctx.stroke();
-	ctx.closePath();
 }
 
-function drawCircle(x, y) {
-	ctx.strokeStyle = 'black';
-	ctx.lineWidth = 2;
-	ctx.lineTo(x, y);
-	ctx.stroke();
-}
-
-source.addEventListener('input', function (event) {
+// number of points input
+pointsSource.addEventListener('input', function (event) {
 	ctx.clearRect(0, 0, 600, 600); // clear previous canvas at start of every update
-	points = [];
-	let result = event.target.value;
-	calculateCircle(result);
+	points = []; // empty circle points array
+	result = event.target.value; // number of points
+	calculateCircle(result); // calculate and draw new circle
+});
+
+// x til kx input
+kxSource.addEventListener('input', function (event) {
+	ctx.clearRect(0, 0, 600, 600); // clear previous canvas at start of every update
+	calculateCircle(result); // redraw circle
+	let res = event.target.value; // kx
+	drawArt(res); // draw art with kx given input
 });
 
 // change page on button click
