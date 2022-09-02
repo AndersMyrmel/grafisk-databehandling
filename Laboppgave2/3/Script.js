@@ -32,7 +32,7 @@ const drawSqauresWithinSquares = (numOfSquares) => {
 	}
 };
 
-// Calcuate row and col position for the 16 squares
+// Calcuate row and col position for square border
 const updateRowCols = (cols, rows, points, totalRows) => {
 	const offset = (c.height * totalRows) / (totalRows * totalRows);
 	points.x0 = cols * offset;
