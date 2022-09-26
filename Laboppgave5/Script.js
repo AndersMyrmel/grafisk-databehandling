@@ -38,9 +38,9 @@ const scalePolygon = () => {
 	drawPolygon();
 };
 
-const rotatePolygon = () => {
+const rotatePolygon = (angle) => {
 	for (i = 0; i < points.length; i++) {
-		[newx, newy] = rotate(points[i].x, points[i].y, 30);
+		[newx, newy] = rotate(points[i].x, points[i].y, angle);
 		points[i].x = newx;
 		points[i].y = newy;
 	}
@@ -82,7 +82,12 @@ c.addEventListener('mousedown', function (event) {
 		translatePolygon(translationPoints);
 	}
 	if (rotation) {
-		rotatePolygon();
+		let currx = event.clientX - c.offsetLeft;
+		if (currx > c.height / 2) {
+			rotatePolygon(30);
+		} else {
+			rotatePolygon(-30);
+		}
 	}
 });
 
