@@ -78,21 +78,14 @@ c.addEventListener('mousedown', function (event) {
 	}
 	if (translation) {
 		dragging = false;
-		if (
-			ctx.isPointInPath(
-				event.clientX - c.offsetLeft,
-				event.clientY - c.offsetTop
-			)
-		) {
-			dragging = true;
-		}
+		let currx = event.clientX - c.offsetLeft;
+		let curry = event.clientY - c.offsetTop;
+		if (ctx.isPointInPath(currx, curry)) dragging = true;
 	}
 	if (rotation) {
-		if (event.clientX - c.offsetLeft > c.height / 2) {
-			rotatePolygon(30);
-		} else {
-			rotatePolygon(-30);
-		}
+		event.clientX - c.offsetLeft > c.height / 2
+			? rotatePolygon(30)
+			: rotatePolygon(-30);
 	}
 });
 
