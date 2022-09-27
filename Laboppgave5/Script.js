@@ -78,9 +78,9 @@ c.addEventListener('mousedown', function (event) {
 	}
 	if (translation) {
 		dragging = false;
-		let currx = event.clientX - c.offsetLeft;
-		let curry = event.clientY - c.offsetTop;
-		if (ctx.isPointInPath(currx, curry)) dragging = true;
+		ctx.isPointInPath(event.clientX - c.offsetLeft, event.clientY - c.offsetTop)
+			? (dragging = true)
+			: (draging = false);
 	}
 	if (rotation) {
 		event.clientX - c.offsetLeft > c.height / 2
