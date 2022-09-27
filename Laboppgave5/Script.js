@@ -6,7 +6,8 @@ let scale = 1;
 let drawing,
 	translation,
 	scaling,
-	rotation = false;
+	rotation,
+	dragging = false;
 
 const drawPolygon = () => {
 	ctx.clearRect(0, 0, c.width, c.height);
@@ -76,10 +77,15 @@ c.addEventListener('mousedown', function (event) {
 		drawPolygon();
 	}
 	if (translation) {
-		let currx = event.clientX - c.offsetLeft;
-		let curry = event.clientY - c.offsetTop;
-		let translationPoints = { x: currx, y: curry };
-		translatePolygon(translationPoints);
+		dragging = false;
+		if (
+			ctx.isPointInPath(
+				event.clientX - c.offsetLeft,
+				event.clientY - c.offsetTop
+			)
+		) {
+			dragging = true;
+		}
 	}
 	if (rotation) {
 		let currx = event.clientX - c.offsetLeft;
@@ -88,6 +94,19 @@ c.addEventListener('mousedown', function (event) {
 		} else {
 			rotatePolygon(-30);
 		}
+	}
+});
+
+const mouseUp = () => (dragging = false);
+
+c.addEventListener('mouseup', mouseUp, false);
+
+c.addEventListener('mousemove', (event) => {
+	if (dragging) {
+		let currx = event.clientX - c.offsetLeft;
+		let curry = event.clientY - c.offsetTop;
+		let translationPoints = { x: currx, y: curry };
+		translatePolygon(translationPoints);
 	}
 });
 
