@@ -88,8 +88,7 @@ c.addEventListener('mousedown', function (event) {
 		}
 	}
 	if (rotation) {
-		let currx = event.clientX - c.offsetLeft;
-		if (currx > c.height / 2) {
+		if (event.clientX - c.offsetLeft > c.height / 2) {
 			rotatePolygon(30);
 		} else {
 			rotatePolygon(-30);
