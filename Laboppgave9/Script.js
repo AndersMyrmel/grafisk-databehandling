@@ -34,11 +34,16 @@ const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 camera.position.z = 5;
 
+const gui = new dat.GUI();
+gui.add(mesh.rotation, 'x', 0, 10).name('Rotate X axis');
+gui.add(mesh.rotation, 'y', 0, 10).name('Rotate Y axis');
+gui.add(mesh.rotation, 'z', 0, 10).name('Rotate Z axis');
+
 function animate() {
 	requestAnimationFrame(animate);
-	mesh.rotation.x += 0.004;
-	mesh.rotation.y += 0.004;
-	mesh.rotation.z += 0.004;
+	mesh.rotation.x += mesh.rotation.x / 1000;
+	mesh.rotation.y += mesh.rotation.y / 1000;
+	mesh.rotation.z += mesh.rotation.z / 1000;
 	renderer.render(scene, camera);
 }
 
