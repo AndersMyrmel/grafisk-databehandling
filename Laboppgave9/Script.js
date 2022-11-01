@@ -8,6 +8,7 @@ const camera = new THREE.PerspectiveCamera(
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 const geometry = new THREE.BufferGeometry();
 // create a simple square shape. We duplicate the top left and bottom right
