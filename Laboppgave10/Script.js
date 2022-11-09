@@ -16,7 +16,7 @@ const illumination = 2.5;
 let light = new THREE.HemisphereLight('#ffffff', '#444444', 0, 1);
 light.position.set(0, 500, 0);
 scene.add(light);
-light = new THREE.DirectionalLight(0xffffff, illumination);
+light = new THREE.DirectionalLight(0xffeacb, illumination);
 light.position.set(0, 200, -800);
 light.castShadow = true;
 light.shadow.camera.top = 400;
@@ -70,10 +70,17 @@ function GLTFEachObject(aObject) {
 		GLTObjectModel[aObject.name] = aObject;
 	}
 }
+var controls = {
+	rotation: -0.004,
+};
+const gui = new dat.GUI();
+gui.add(controls, 'rotation', -10, 10).onChange(function (value) {
+	rotationAngle = (value * Math.PI) / 180;
+});
 
 function animate() {
 	if (GLTObjectModel.Object_02) {
-		GLTObjectModel.Object_02.rotation.z += 0.005;
+		GLTObjectModel.Object_02.rotation.z += controls.rotation / 500;
 	}
 	requestAnimationFrame(animate);
 	renderer.render(scene, camera);
