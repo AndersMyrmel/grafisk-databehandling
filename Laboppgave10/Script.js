@@ -33,7 +33,6 @@ const plane = new THREE.PlaneGeometry(2000, 2000);
 const matOption = { color: '#a6a6a6', depthWrite: false };
 const mat = new THREE.MeshPhongMaterial(matOption);
 const mesh = new THREE.Mesh(plane, mat);
-mesh.position.y = 0.001; // so we're above the ground slightly
 mesh.rotation.x = -Math.PI / 2;
 mesh.receiveShadow = true;
 scene.add(mesh);
@@ -57,6 +56,8 @@ function GLTFLoadDone(GLTFStructure) {
 		GLTFStructure.scene.getObjectByName('Main_Section');
 	GLTObjectModel.Object_02 = GLTFStructure.scene.getObjectByName('Blades');
 	console.log(GLTObjectModel.Object_02);
+	mesh.position.y = GLTObjectModel.Object_01.position.y;
+	grid.position.y = GLTObjectModel.Object_01.position.y;
 	scene.add(GLTFStructure.scene);
 }
 
@@ -73,7 +74,6 @@ function GLTFEachObject(aObject) {
 function animate() {
 	if (GLTObjectModel.Object_02) {
 		GLTObjectModel.Object_02.rotation.z += 0.005;
-		GLTObjectModel.Object_02.position.x = -0.005;
 	}
 	requestAnimationFrame(animate);
 	renderer.render(scene, camera);
