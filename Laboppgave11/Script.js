@@ -133,9 +133,9 @@ var controls = {
 
 const gui = new dat.GUI();
 gui.add(controls, 'Direction').name('Change Direction');
-gui.add(controls, 'Arm1').name('Move Arm One');
-gui.add(controls, 'Arm2').name('Move Arm Two');
-gui.add(controls, 'Bucket').name('Move Bucket');
+gui.add(controls, 'Arm1').name('Extend Arm One');
+gui.add(controls, 'Arm2').name('Extend Arm Two');
+gui.add(controls, 'Bucket').name('Extend Bucket');
 
 document.addEventListener('keydown', (event) => {
 	if (event.key.toLowerCase() == 'w') {
