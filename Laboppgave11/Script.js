@@ -85,42 +85,20 @@ function GLTFEachObject(aObject) {
 
 document.addEventListener('keydown', (event) => {
 	if (event.key.toLowerCase() == 'w') {
-		moveExcavatorNorth();
+		moveExcavator('z', -2);
 	} else if (event.key.toLowerCase() == 'a') {
-		moveExcavatorWest();
+		moveExcavator('x', -2);
 	} else if (event.key.toLowerCase() == 's') {
-		moveExcavatorSouth();
+		moveExcavator('z', 2);
 	} else if (event.key.toLowerCase() == 'd') {
-		moveExcavatorEast();
+		moveExcavator('x', 2);
 	}
 });
 
-function moveExcavatorNorth() {
-	GLTObjectModel.Object_01.position.z -= 0.5;
-	GLTObjectModel.Object_02.position.z -= 0.5;
-	GLTObjectModel.Object_03.position.z -= 0.5;
-	GLTObjectModel.Object_04.position.z -= 0.5;
-}
-
-function moveExcavatorSouth() {
-	GLTObjectModel.Object_01.position.z += 0.5;
-	GLTObjectModel.Object_02.position.z += 0.5;
-	GLTObjectModel.Object_03.position.z += 0.5;
-	GLTObjectModel.Object_04.position.z += 0.5;
-}
-
-function moveExcavatorEast() {
-	GLTObjectModel.Object_01.position.x += 0.5;
-	GLTObjectModel.Object_02.position.x += 0.5;
-	GLTObjectModel.Object_03.position.x += 0.5;
-	GLTObjectModel.Object_04.position.x += 0.5;
-}
-
-function moveExcavatorWest() {
-	GLTObjectModel.Object_01.position.x -= 0.5;
-	GLTObjectModel.Object_02.position.x -= 0.5;
-	GLTObjectModel.Object_03.position.x -= 0.5;
-	GLTObjectModel.Object_04.position.x -= 0.5;
+function moveExcavator(direction, speed) {
+	for (let i = 1; i < 5; i++) {
+		GLTObjectModel[`Object_0${i}`].position[direction] += speed;
+	}
 }
 
 function animate() {
