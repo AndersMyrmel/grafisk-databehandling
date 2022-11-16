@@ -83,8 +83,48 @@ function GLTFEachObject(aObject) {
 //	rotationAngle = (value * Math.PI) / 180;
 //});
 
+document.addEventListener('keydown', (event) => {
+	if (event.key.toLowerCase() == 'w') {
+		moveExcavatorNorth();
+	} else if (event.key.toLowerCase() == 'a') {
+		moveExcavatorWest();
+	} else if (event.key.toLowerCase() == 's') {
+		moveExcavatorSouth();
+	} else if (event.key.toLowerCase() == 'd') {
+		moveExcavatorEast();
+	}
+});
+
+function moveExcavatorNorth() {
+	GLTObjectModel.Object_01.position.z -= 0.5;
+	GLTObjectModel.Object_02.position.z -= 0.5;
+	GLTObjectModel.Object_03.position.z -= 0.5;
+	GLTObjectModel.Object_04.position.z -= 0.5;
+}
+
+function moveExcavatorSouth() {
+	GLTObjectModel.Object_01.position.z += 0.5;
+	GLTObjectModel.Object_02.position.z += 0.5;
+	GLTObjectModel.Object_03.position.z += 0.5;
+	GLTObjectModel.Object_04.position.z += 0.5;
+}
+
+function moveExcavatorEast() {
+	GLTObjectModel.Object_01.position.x += 0.5;
+	GLTObjectModel.Object_02.position.x += 0.5;
+	GLTObjectModel.Object_03.position.x += 0.5;
+	GLTObjectModel.Object_04.position.x += 0.5;
+}
+
+function moveExcavatorWest() {
+	GLTObjectModel.Object_01.position.x -= 0.5;
+	GLTObjectModel.Object_02.position.x -= 0.5;
+	GLTObjectModel.Object_03.position.x -= 0.5;
+	GLTObjectModel.Object_04.position.x -= 0.5;
+}
+
 function animate() {
-	if (GLTObjectModel.Object_02) {
+	if (GLTObjectModel.Object_01) {
 	}
 	requestAnimationFrame(animate);
 	renderer.render(scene, camera);
