@@ -5,9 +5,7 @@ const camera = new THREE.PerspectiveCamera(
 	1,
 	1000
 );
-camera.position.z = -40;
-camera.position.x = 30;
-camera.position.y = 30;
+camera.position.set(25, 25, -30);
 camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -60,9 +58,6 @@ function GLTFLoadDone(GLTFStructure) {
 	GLTObjectModel.Object_02 = GLTFStructure.scene.getObjectByName('Arm1');
 	GLTObjectModel.Object_03 = GLTFStructure.scene.getObjectByName('Arm2');
 	GLTObjectModel.Object_04 = GLTFStructure.scene.getObjectByName('Spade');
-
-	//mesh.position.y = GLTObjectModel.Object_01.position.y;
-	//grid.position.y = GLTObjectModel.Object_01.position.y;
 	scene.add(GLTFStructure.scene);
 }
 
@@ -75,13 +70,35 @@ function GLTFEachObject(aObject) {
 		GLTObjectModel[aObject.name] = aObject;
 	}
 }
-//var controls = {
-//	rotation: -0.004,
-//};
-//const gui = new dat.GUI();
-//gui.add(controls, 'rotation', -10, 10).onChange(function (value) {
-//	rotationAngle = (value * Math.PI) / 180;
-//});
+
+var controls = {
+	direction: false,
+	count: 0,
+	Arm1: function () {
+		if (!this.direction) {
+			if (this.count < 5) {
+				GLTObjectModel.Object_02.rotation.x -= 0.1;
+				GLTObjectModel.Object_02.position.z -= 0.7;
+				GLTObjectModel.Object_03.rotation.x += 0.01;
+				GLTObjectModel.Object_03.position.z -= 1.5;
+				GLTObjectModel.Object_04.position.z -= 1.5;
+				this.count += 1;
+			}
+		} else {
+			if (this.count > 0) {
+				GLTObjectModel.Object_02.rotation.x += 0.1;
+				GLTObjectModel.Object_02.position.z += 0.7;
+				GLTObjectModel.Object_03.rotation.x -= 0.01;
+				GLTObjectModel.Object_03.position.z += 1.5;
+				GLTObjectModel.Object_04.position.z += 1.5;
+				this.count -= 1;
+			}
+		}
+	},
+};
+const gui = new dat.GUI();
+gui.add(controls, 'direction');
+gui.add(controls, 'Arm1');
 
 document.addEventListener('keydown', (event) => {
 	if (event.key.toLowerCase() == 'w') {
@@ -102,7 +119,7 @@ function moveExcavator(direction, speed) {
 }
 
 function animate() {
-	if (GLTObjectModel.Object_01) {
+	if (GLTObjectModel.Object_02) {
 	}
 	requestAnimationFrame(animate);
 	renderer.render(scene, camera);
