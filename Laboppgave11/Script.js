@@ -72,33 +72,70 @@ function GLTFEachObject(aObject) {
 }
 
 var controls = {
-	direction: false,
-	count: 0,
+	Direction: false,
+	count1: 0,
+	count2: 0,
+	count3: 0,
 	Arm1: function () {
-		if (!this.direction) {
-			if (this.count < 5) {
+		if (!this.Direction) {
+			if (this.count1 < 5) {
 				GLTObjectModel.Object_02.rotation.x -= 0.1;
 				GLTObjectModel.Object_02.position.z -= 0.7;
 				GLTObjectModel.Object_03.rotation.x += 0.01;
 				GLTObjectModel.Object_03.position.z -= 1.5;
 				GLTObjectModel.Object_04.position.z -= 1.5;
-				this.count += 1;
+				this.count1 += 1;
 			}
 		} else {
-			if (this.count > 0) {
+			if (this.count1 > 0) {
 				GLTObjectModel.Object_02.rotation.x += 0.1;
 				GLTObjectModel.Object_02.position.z += 0.7;
 				GLTObjectModel.Object_03.rotation.x -= 0.01;
 				GLTObjectModel.Object_03.position.z += 1.5;
 				GLTObjectModel.Object_04.position.z += 1.5;
-				this.count -= 1;
+				this.count1 -= 1;
+			}
+		}
+	},
+	Arm2: function () {
+		if (!this.Direction) {
+			if (this.count2 < 5) {
+				GLTObjectModel.Object_03.rotation.x += 0.1;
+				GLTObjectModel.Object_03.position.y += 0.7;
+				GLTObjectModel.Object_04.position.y += 1.5;
+				this.count2 += 1;
+			}
+		} else {
+			if (this.count2 > 0) {
+				GLTObjectModel.Object_03.rotation.x -= 0.1;
+				GLTObjectModel.Object_03.position.y -= 0.7;
+				GLTObjectModel.Object_04.position.y -= 1.5;
+				this.count2 -= 1;
+			}
+		}
+	},
+	Bucket: function () {
+		if (!this.Direction) {
+			if (this.count3 < 5) {
+				GLTObjectModel.Object_04.rotation.x += 0.1;
+				GLTObjectModel.Object_04.position.z -= 0.3;
+				this.count3 += 1;
+			}
+		} else {
+			if (this.count3 > 0) {
+				GLTObjectModel.Object_04.rotation.x -= 0.1;
+				GLTObjectModel.Object_04.position.z += 0.3;
+				this.count3 -= 1;
 			}
 		}
 	},
 };
+
 const gui = new dat.GUI();
-gui.add(controls, 'direction');
-gui.add(controls, 'Arm1');
+gui.add(controls, 'Direction').name('Change Direction');
+gui.add(controls, 'Arm1').name('Move Arm One');
+gui.add(controls, 'Arm2').name('Move Arm Two');
+gui.add(controls, 'Bucket').name('Move Bucket');
 
 document.addEventListener('keydown', (event) => {
 	if (event.key.toLowerCase() == 'w') {
